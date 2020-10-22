@@ -1,0 +1,25 @@
+.form-search{
+    direction: rtl;
+    margin-top: 20%;
+  
+}
+
+.divinputs{
+    height: 150px;
+    background:  skyblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.center{
+    width: 150px;
+      margin: 40px auto;
+      
+    }
+
+
+    .f{
+        margin: 30px;
+    }
+
