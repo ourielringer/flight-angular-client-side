@@ -18,7 +18,7 @@ export class PassengerDetailsComponent implements OnInit {
   
 
    details = new FormGroup({
-    firstname: new FormControl(`${this.svc.passenger.name}`, Validators.minLength(2)),
+    firstname: new FormControl(`${this.svc.passenger.name}`, Validators.minLength(5)),
     lastname: new FormControl('',[Validators.required]),
     id: new FormControl('',[Validators.required,]),
     address: new FormControl('',[Validators.required]),

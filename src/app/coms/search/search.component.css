@@ -14,12 +14,29 @@
 
 .center{
     width: 150px;
-      margin: 40px auto;
+    margin: 40px auto;
       
     }
 
 
     .f{
         margin: 30px;
+    }
+
+    .btadult, .btbaby{
+        display: flex;
+        margin-top: 1px;
+        justify-content: space-between;
+    }
+
+    .item, span{
+        margin-left:5px;
+        
+    }
+    .numperson{
+        display: flex;
+        flex-direction: column;
+        border: 1px blue solid
+        /* margin:5px; */
     }
 

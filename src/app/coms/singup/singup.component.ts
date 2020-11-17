@@ -28,7 +28,6 @@ export class SingupComponent implements OnInit {
 
       if ( this.svcsingup.listuser[i].emil == this.emil.value &&
         this.svcsingup.listuser[i].password == this.password.value) {
-
           alert("user is exsist")
           boolian =false
           break
@@ -39,14 +38,13 @@ export class SingupComponent implements OnInit {
       }
 
     }
+
     if (boolian) {
       let user = new User(this.name.value, this.emil.value, this.password.value)
-
       this.svcsingup.listuser.push(user)
 
       this.svcsingup.passenger = user
       console.log( this.svcsingup.passenger);
-      
 
       this.router.navigate(['/singin'])
       

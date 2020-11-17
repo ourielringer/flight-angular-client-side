@@ -11,19 +11,26 @@ import { Router } from '@angular/router';
 })
 export class SinginComponent implements OnInit {
 
-  constructor(public svcsingin:ListFligthService , private router:Router) { }
+  constructor(public svc:ListFligthService , private router:Router) { }
 
   ngOnInit(): void {
   }
 
-  name = new FormControl("",[Validators.required,Validators.min(2)])
-  password = new FormControl("",[Validators.required,Validators.min(6)])
+  signin = new FormGroup({
+    name : new FormControl('', [Validators.required, Validators.minLength(4),]),
+    password : new FormControl('', [])
+  })
+
+  // name = new FormControl("",[Validators.required,Validators.min(2)]) 
+  // password = new FormControl("",[Validators.required,Validators.min(6)])
   
   singin(){
-    for (let i = 0; i <  this.svcsingin.listuser.length; i++) {
+    for (let i = 0; i <  this.svc.listuser.length; i++) {
 
-      if ( this.svcsingin.listuser[i].name == this.name.value &&
-          this.svcsingin.listuser[i].password == this.password.value){
+      if ( this.svc.listuser[i].name == this.signin.value.name &&
+          this.svc.listuser[i].password == this.signin.value.password){
+
+          this.svc.passenger = this.svc.listuser[i];
           this.router.navigate(['/details-passenger'])
         }
       else{

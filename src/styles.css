@@ -8,8 +8,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     
 } */
 /* .img{
-    margin-left: 400px;
-
-    height: 400px;
-    width: 600;
-} */
+   
+background-image: unset;
+    /* height: 100%;
+    width: 100%; */
+/* } */ 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ListFligthService } from 'src/app/service/list-fligth.service';
 import { Flight } from 'src/app/models/models';
@@ -11,18 +11,21 @@ import { Flight } from 'src/app/models/models';
 })
 export class SearchComponent implements OnInit {
 
-  constructor(public svc:ListFligthService) { }
+  constructor(public svc:ListFligthService) {}
 
-  ngOnInit(): void {
-  }
-  adult
-  baby
+  ngOnInit(): void {}
 
-  from = new FormControl("",)
+  @ViewChild("itemplus") itemplus: ElementRef
+  @ViewChild("itemminus") itemminus: ElementRef
+  @ViewChild("notfound") notfound: ElementRef
+
+  
+ 
+
+  from = new FormControl("")
   to = new FormControl("")
   date = new FormControl("")
-  numperson = new FormControl("",[Validators.required,Validators.maxLength(9),Validators.pattern("/^[0-9]*$/")])
-
+  
   listfligthrsl:Flight[] = []
 
   countryList = [
@@ -277,12 +280,9 @@ export class SearchComponent implements OnInit {
     "Åland Islands"
   ];
   
-
-
  search(){  
+   this.listfligthrsl=[];  
 
-   this.listfligthrsl=[];   
-  
   for (let i = 0; i < this.svc.listfligth.length; i++) {
 
     if (this.from.value ==  this.svc.listfligth[i].from &&
@@ -292,18 +292,41 @@ export class SearchComponent implements OnInit {
           this.listfligthrsl.push(this.svc.listfligth[i])
           console.log("yes");
     }
-    else console.log("no");
-  }  
+    else{
+    //  console.log(this.notfound.nativeElement);
+    }
+    
+ }
  }
 
+ adultplus(){
+    this.sumOfPassengers()
+    this.svc.adults ++;
+  }
 
- adulte(f){
-   console.log(f);
-   
-   this.adult++
- }
+  adultminus(){
+    this.svc.adults--;
 
+    if(this.svc.adults < 0)
+    this.svc.adults =0
+  }
 
+  babyplus(){
+    this.sumOfPassengers()
+    this.svc.babys++
+  }
 
+  babyminus(){
+    this.svc.babys--
+    if(this.svc.babys < 0)
+    this.svc.babys =0
+  }
 
+  sumOfPassengers(){
+    if(this.svc.adults + this.svc.babys == 9){
+      this.itemplus.nativeElement.disabled = true
+      this.itemminus.nativeElement.disabled = true
+    }
+  }
+ 
 }

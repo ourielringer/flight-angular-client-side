@@ -14,8 +14,8 @@ export class FindflightComponent implements OnInit {
 
   ngOnInit(): void {
   }
-@Input() flight:Flight
 
+@Input() flight:Flight
 @Input()  numepassengers = ''
 
 
@@ -23,8 +23,9 @@ export class FindflightComponent implements OnInit {
 select(fligth){
   console.log(this.flight);
 
-  let plase = parseInt(this.flight.numFreeplaces) - parseInt(this.numepassengers)
-
+  let plase = parseInt(this.flight.numFreeplaces) - (this.svc.adults + this.svc.babys)
+  console.log(plase);
+  
   if(plase >= 0){
 
     this.svc.flightSelected = fligth

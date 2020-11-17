@@ -3,24 +3,15 @@
 <div class="container" >
     <div class="form-search" >
         <div class="row divinputs">
-            
-                <!-- <mat-form-field appearance="fill">
-                        <mat-label>number of passengers </mat-label>
-                        <mat-select  multiple>
-                        <mat-option><button>+</button><div>0</div><button>-</button><label for="">adulte</label></mat-option> 
-                        </mat-select>
-                      </mat-form-field> -->
 
-
-            <div class="col">
-                <input type="text" class="form-control" [formControl]="numperson" placeholder="numperson">
-            </div>
-                        
-            <!-- <div class="col">
-                <input type="text" class="form-control" [formControl]="from" placeholder="from">
-            </div> -->
-        
-         
+            <mat-form-field appearance="fill">
+                    <mat-label>oun passenger</mat-label>
+                    <mat-select matNativeControl required >
+                      <div class="btadult"><button (click)="adultplus()" mat-raised-button>+</button> <div class="adultvlue">{{svc.adults}}</div> <button (click)="adultminus()"  mat-raised-button>-</button><mat-option >adult</mat-option></div>
+                      <div class="btbaby"><button (click)="babyplus()" mat-raised-button>+</button> <div class="babyvlue">{{svc.babys}}</div> <button (click)="babyminus()"  mat-raised-button>-</button><mat-option >baby</mat-option></div>
+                    </mat-select>
+                  </mat-form-field>
+ 
             <mat-form-field appearance="fill" class="f">
                 <mat-label>from</mat-label>
                 <mat-select  [formControl]="from">
@@ -38,78 +29,28 @@
                           </mat-option>
                         </mat-select>
                       </mat-form-field>
-<!-- 
-                      <mat-form-field class="example-full-width" appearance="fill">
-                            <mat-label>Choose a date</mat-label>
-                            <input matInput [matDatepicker]="picker" [formControl]="date" ng-change="onSelect(birthday)">
-                            <mat-datepicker-toggle matSuffix [for]="picker">
-                              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-                            </mat-datepicker-toggle>
-                            <mat-datepicker #picker></mat-datepicker>
-                          </mat-form-field> -->
-            <!-- <div class="col">
-                <input type="text" class="form-control" [formControl]="to" placeholder="to ">
-            </div> -->
+
             <div class="col">
-                <input type="text" class="form-control" [formControl] ="date" placeholder="date ">
-                
-               
-
-               
-                
-              
-
+                <input type="text" class="form-control" [formControl] ="date" placeholder="date ">            
             </div>
-            <button type="button" class="btn btn-primary" (click)="search()">search</button>
+
+            <button id="cc-search" type="button" class="btn btn-primary" (click)="search()">search</button>  
         </div>
     
         <i class='far fa-calendar-alt' style='font-size:36px; color: red'></i>
-        
- 
-   
+    </div>  
+
+    <div class="notfound">not found flight</div>
 
     <ul *ngFor='let f of listfligthrsl'>
         <app-findflight 
             [flight]='f'
-         
-            [numepassengers]='numperson.value'>
+            >
         </app-findflight>
     </ul>
     
 </div>
 
-<div class="center">
-        <p>
-          <!-- </p><div class="input-group">
-              <span class="input-group-btn">
-                  <button type="button" class="btn btn-success btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
-                      <span class="glyphicon glyphicon-minus"></span>-
-                  </button>
-              </span>
-              <input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="10">
-              <span class="input-group-btn">
-                  <button type="button" class="btn btn-danger btn-number" data-type="plus" data-field="quant[1]">
-                      <span class="glyphicon glyphicon-plus"></span>+
-                  </button>
-              </span>
-          </div> -->
-        <p></p>
-        <p>
-          <!-- </p><div class="input-group">
-              <span class="input-group-btn">
-                  <button type="button" class="btn btn-success btn-number"  data-type="minus" data-field="quant[2]">
-                    <span class="glyphicon glyphicon-minus"></span>-
-                  </button>
-              </span>
-              <input type="text" name="quant[2]" class="form-control input-number" value="10" min="1" max="100">
-              <span class="input-group-btn">
-                  <button type="button" class="btn btn-danger btn-number" data-type="plus" data-field="quant[2]">
-                      <span class="glyphicon glyphicon-plus"></span>+
-                  </button>
-              </span>
-          </div> -->
-        <p></p>
-    </div>
-
+<!-- [numepassengers]='numperson.value' -->
 
       
