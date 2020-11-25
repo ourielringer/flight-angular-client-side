@@ -1,42 +1,86 @@
 .form-search{
     direction: rtl;
-    margin-top: 20%;
-  
+    margin-top:10%;
 }
 
 .divinputs{
-    height: 150px;
+    height: 250px;
     background:  skyblue;
+    border: blue 2px solid;
+    border-radius: 10px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 10px;
+}
+
+.divinputs2{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 10px;
+}
+
+.btn{
+   width: 100%; 
 }
 
 .center{
     width: 150px;
-    margin: 40px auto;
-      
-    }
+    margin: 40px auto; 
+}
 
+.btadult, .btbaby{
+    display: flex;
+    margin-top: 1px;
+    justify-content: space-between;
+}
 
-    .f{
-        margin: 30px;
-    }
+.item, span{
+    margin-left:5px;
+    
+}
+.numperson{
+    display: flex;
+    flex-direction: column;
+    border: 1px blue solid
+    /* margin:5px; */
+}
 
-    .btadult, .btbaby{
-        display: flex;
-        margin-top: 1px;
-        justify-content: space-between;
-    }
+.notfound{
+    text-align: center;
+    height: 20px;
+    margin-top: 20px;
+    
+}
 
-    .item, span{
-        margin-left:5px;
-        
-    }
-    .numperson{
-        display: flex;
-        flex-direction: column;
-        border: 1px blue solid
-        /* margin:5px; */
-    }
+.divbtdirction{
+    display: flex;
+    flex-direction: row;
+    /* justify-content: flex-start; */
+    /* position: absolute; */
+    /* right: 0px; */
+}
 
+.ounsaid{
+    margin-right:3px;
+}
+
+.listflight{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    direction: rtl;
+    text-align: center
+}
+
+.go{
+    display: flex;
+    flex-direction: column;
+}
+
+.return{
+    display: flex;
+    flex-direction: column;
+}

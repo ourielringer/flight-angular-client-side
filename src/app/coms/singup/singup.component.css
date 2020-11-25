@@ -1,7 +1,14 @@
 .container{
     height: 100%;
+    width: 500px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border: 5px blue solid;
+    border-radius: 15px;
+}
+
+.btn{
+    margin: 50px;
 }

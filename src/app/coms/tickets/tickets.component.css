@@ -5,8 +5,16 @@
 }
 
 .img{
-    margin-right: 50px
+    /* margin-right: 50px */
 }
 div{
     margin-left: 10px
+}
+
+.header{
+    height: 150px;
+    background: rgb(111, 111, 246);
+    direction: rtl;
+    display: flex;
+    justify-content: flex-start;
 }

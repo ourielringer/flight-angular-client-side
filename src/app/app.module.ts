@@ -17,6 +17,8 @@ import { SinginComponent } from './coms/singin/singin.component';
 import { SingupComponent } from './coms/singup/singup.component';
 import { PassengerDetailsComponent } from './coms/passenger-details/passenger-details.component';
 import { PaymentComponent } from './coms/payment/payment.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 @NgModule({
@@ -38,7 +40,7 @@ import { PaymentComponent } from './coms/payment/payment.component';
     MatSliderModule,
     //  MymodulModule,
     DemoMaterialModule,
-   
+    HttpClientModule,
     ReactiveFormsModule
   ],
   providers: [],

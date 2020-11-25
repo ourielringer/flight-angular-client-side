@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ListFligthService } from 'src/app/service/list-fligth.service';
 import { Flight } from 'src/app/models/models';
+import { HttpClient } from '@angular/common/http';
+import { ListFligthService } from 'src/app/services/list-fligth.service';
 
 
 @Component({
@@ -11,22 +12,32 @@ import { Flight } from 'src/app/models/models';
 })
 export class SearchComponent implements OnInit {
 
-  constructor(public svc:ListFligthService) {}
+  constructor(public svc: ListFligthService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
+
+  goAndBack: boolean = false
+
+  listBakc: boolean = false
+  listgo:boolean = false
+
+  listflightgo: Flight[] = []
+  listflightback: Flight[] = []
 
   @ViewChild("itemplus") itemplus: ElementRef
-  @ViewChild("itemminus") itemminus: ElementRef
+  // @ViewChild("itemplus") itemplus: ElementRef
+  // @ViewChild("itemminus") itemminus: ElementRef
   @ViewChild("notfound") notfound: ElementRef
 
-  
- 
+  @ViewChild("bt1") bt1: ElementRef
+  @ViewChild("bt2") bt2: ElementRef
 
-  from = new FormControl("")
-  to = new FormControl("")
-  date = new FormControl("")
-  
-  listfligthrsl:Flight[] = []
+
+  flight = new FormGroup({
+    from: new FormControl(""),
+    to: new FormControl(''),
+    date: new FormControl(''),
+  })
 
   countryList = [
     "Afghanistan",
@@ -279,54 +290,104 @@ export class SearchComponent implements OnInit {
     "Zimbabwe",
     "Åland Islands"
   ];
+
+  search() {
+    this.svc.sumPassaengerarray()
+
+    // this.notfound.nativeElement.innerHTML = ""
+    this.listflightgo = [];
+
+    // this.svc.getFlight('http://localhost:3000/ticket', `?from=${this.flight.value.from}&&to=${this.flight.value.to}&&goAndBack=${this.flight.value.goAndBack}`)
+    this.searchGo().subscribe(res => {
+      console.log(res);
+
+      if (res.length == 0) {
+        console.log(res.length);
+        this.notfound.nativeElement.innerHTML = "not found flight"
+        return
+      }
+      this.listgo = true
+      this.listflightgo.push(...res)
+    });
+
+    if (this.goAndBack) {
+      this.searchBakc().subscribe(res => {
+        console.log(res);
   
- search(){  
-   this.listfligthrsl=[];  
+        if (res.length == 0) {
+          this.listBakc = true
+          console.log(res.length);
+          this.notfound.nativeElement.innerHTML = "not found flight"
+          return
+        }
+        this.listBakc = true
+        this.listflightback.push(...res)
+      });
 
-  for (let i = 0; i < this.svc.listfligth.length; i++) {
-
-    if (this.from.value ==  this.svc.listfligth[i].from &&
-        this.to.value == this.svc.listfligth[i].to &&
-        this.date.value == this.svc.listfligth[i].date){
-
-          this.listfligthrsl.push(this.svc.listfligth[i])
-          console.log("yes");
     }
-    else{
-    //  console.log(this.notfound.nativeElement);
-    }
-    
- }
- }
 
- adultplus(){
-    this.sumOfPassengers()
-    this.svc.adults ++;
+    // for (let i = 0; i < this.svc.listfligth.length; i++) {
+
+    //   if (this.flight.value.from == this.svc.listfligth[i].from &&
+    //     this.flight.value.to == this.svc.listfligth[i].to &&
+    //     this.flight.value.goAndBack == this.svc.listfligth[i].goAndBack) {
+
+    //     this.listflightgo.push(this.svc.listfligth[i])
+    //     // console.log(this.from.value);
+    //   }
+    //   else {
+    //     continue
+    //   }
+    // }
+    // if (this.listflightgo == []){
+    //   this.notfound.nativeElement.innerHTML = "not found flight"
+    // }
   }
 
-  adultminus(){
+  searchGo() {
+    return this.svc.getFlight('http://localhost:3000/ticket', `?from=${this.flight.value.from}&&to=${this.flight.value.to}&&date=${this.flight.value.date}`)
+  }
+
+  searchBakc() {
+    return this.svc.getFlight('http://localhost:3000/ticket', `?from=${this.flight.value.to}&&to=${this.flight.value.from}&&date=${this.flight.value.date}`)
+  }
+
+  adultplus() {
+    this.svc.adults++;
+    this.sumOfPassengers()
+  }
+
+  adultminus() {
     this.svc.adults--;
-
-    if(this.svc.adults < 0)
-    this.svc.adults =0
+    if (this.svc.adults < 0)
+      this.svc.adults = 0
   }
 
-  babyplus(){
-    this.sumOfPassengers()
+  babyplus() {
     this.svc.babys++
+    this.sumOfPassengers()
   }
 
-  babyminus(){
+  babyminus() {
     this.svc.babys--
-    if(this.svc.babys < 0)
-    this.svc.babys =0
+    if (this.svc.babys < 0)
+      this.svc.babys = 0
   }
 
-  sumOfPassengers(){
-    if(this.svc.adults + this.svc.babys == 9){
+  sumOfPassengers() {
+    console.log(this.itemplus);
+    if (this.svc.adults + this.svc.babys >= 9) {
       this.itemplus.nativeElement.disabled = true
-      this.itemminus.nativeElement.disabled = true
+      // this.itemminus.nativeElement.disabled = true
     }
   }
- 
+
+  ounside() {
+    this.goAndBack = false
+  }
+
+  backandforth() {
+    this.goAndBack = true
+
+  }
 }

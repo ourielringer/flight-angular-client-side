@@ -1,27 +1,69 @@
-
+<!-- 
 <div class="form-signin container">
-    <!-- <img class="mb-4" src="/docs/4.5/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> -->
+    <img class="mb-4" src="/docs/4.5/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
 
     <h1 class="h3 mb-3 font-weight-normal">Please create an account</h1>
 
     <label for="inputEmail" class="sr-only">name</label>
     <input type="text" id="inputName" class="form-control"  [formControl]="name" placeholder="name" required="" autofocus="">
 
-    <label for="inputEmail" class="sr-only">emil</label>
-    <input type="text" id="inputEmil" class="form-control"  [formControl]="emil" placeholder="emil" required="" autofocus="">
+    <label for="inputEmail" class="sr-only">id</label>
+    <input type="text" id="inputEmil" class="form-control"  [formControl]="id" placeholder="id" required="" autofocus="">
 
     <label for="inputPassword" class="sr-only">Password</label>
     <input type="password" id="inputPassword" class="form-control"  [formControl]="password" placeholder="Password" required="">
 
     <div class="checkbox mb-3">
       <label>
-        <!-- <input type="checkbox" value="remember-me"> Remember me -->
+        <input type="checkbox" value="remember-me"> Remember me
       </label>
     </div>
-    <button (click)='singup()' class="btn btn-lg btn-primary btn-block" >continu<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-short" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
-      </svg></button><br>
+    <button (click)='singup()' class="btn btn-lg btn-primary btn-block">continu</button><br>
 
       <p>if you are registered <a routerLink ='/singin'>singin</a> </p>
     <p class="mt-5 mb-3 text-muted">© 2020</p>
+</div> -->
+
+<div class="form-signin container">
+  <!-- <img class="mb-4" src="/docs/4.5/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> -->
+  <svg width="4em" height="4em" viewBox="0 0 16 16" class="bi bi-emoji-sunglasses" fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+    <path fill-rule="evenodd"
+      d="M4.285 9.567a.5.5 0 0 1 .683.183A3.498 3.498 0 0 0 8 11.5a3.498 3.498 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.498 4.498 0 0 1 8 12.5a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683zM6.5 6.497V6.5h-1c0-.568.447-.947.862-1.154C6.807 5.123 7.387 5 8 5s1.193.123 1.638.346c.415.207.862.586.862 1.154h-1v-.003l-.003-.01a.213.213 0 0 0-.036-.053.86.86 0 0 0-.27-.194C8.91 6.1 8.49 6 8 6c-.491 0-.912.1-1.19.24a.86.86 0 0 0-.271.194.213.213 0 0 0-.036.054l-.003.01z" />
+    <path
+      d="M2.31 5.243A1 1 0 0 1 3.28 4H6a1 1 0 0 1 1 1v1a2 2 0 0 1-2 2h-.438a2 2 0 0 1-1.94-1.515L2.31 5.243zM9 5a1 1 0 0 1 1-1h2.72a1 1 0 0 1 .97 1.243l-.311 1.242A2 2 0 0 1 11.439 8H11a2 2 0 0 1-2-2V5z" />
+  </svg>
+  <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
+
+  <p class="alert"></p>
+
+  <form [formGroup]="signup" (ngSubmit)="singup()">
+    <div class="form-group">
+      <label for="exampleInputEmail1">name</label>
+      <input type="text" class="form-control" formControlName="name" id="exampleInputEmail1"
+        aria-describedby="emailHelp">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">email</label>
+      <input type="text" class="form-control" formControlName="email" id="exampleInputEmail1"
+        aria-describedby="emailHelp">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">phone number</label>
+        <input type="text" class="form-control" formControlName="phonenumber" id="exampleInputEmail1"
+          aria-describedby="emailHelp">
+      </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" formControlName="password" class="form-control" id="exampleInputPassword1">
+    </div>
+
+    <button type="submit" [disabled]="signup.invalid" class="btn btn-primary">Submit</button>
+  </form>
+
+  <p>if you are registered <a routerLink ='/singin'>singin</a> </p>
+
+  <p class="mt-5 mb-3 text-muted">© 2020</p>
+
 </div>

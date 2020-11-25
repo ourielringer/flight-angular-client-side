@@ -1,16 +1,15 @@
 
-
+<div #notpassengers style="margin: auto"></div>
 <div class="details">
-    <label>  {{flight.companyName}} :  companyName</label>
-    <label>{{flight.from}} :  from </label>
-    <label> {{flight.fromhour}} :  fromhour</label>
-    <label> {{flight.to}} :  to</label>
-    <label>{{flight.tohour}}  :  tohour </label>
-    <label> {{flight.date}}  :  date </label>
-    <label> {{flight.price}}  :  price</label>
-    <button  (click)='select(this)'>select</button>
-
+    <label class="label"><span>companyName</span>   {{flight.companyName}} </label>
+    <label class="label"><span>from </span>         {{flight.from}} </label>
+    <label class="label"><span>fromhour</span>      {{flight.fromhour}}  </label>
+    <label class="label"><span>to</span>            {{flight.to}}  </label>
+    <label class="label"><span>tohour</span>        {{flight.tohour}} </label>
+    <label class="label"><span>date</span>          {{flight.date}} </label>
+    <label class="label"><span>price</span>         {{flight.price}}</label>
     
-    <div class="place" style="color: red;"> </div>
-
+    <button  (click)='select(flight)'>select</button>
 </div>
+
+<div class="place" style="color: red;"> </div>

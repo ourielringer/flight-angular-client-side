@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { Flight } from 'src/app/models/models';
-import { ListFligthService } from 'src/app/service/list-fligth.service';
 import { Router } from '@angular/router';
+import { ListFligthService } from 'src/app/services/list-fligth.service';
 
 @Component({
   selector: 'app-findflight',
@@ -10,41 +10,44 @@ import { Router } from '@angular/router';
 })
 export class FindflightComponent implements OnInit {
 
-  constructor(public svc:ListFligthService, private raout:Router) { }
+  constructor(public svc: ListFligthService, private raout: Router) { }
 
   ngOnInit(): void {
   }
 
-@Input() flight:Flight
-@Input()  numepassengers = ''
+  @ViewChild("notpassengers") notpassengers: ElementRef
+
+  @Input() flight: Flight
+  @Input() numepassengers = ''
 
 
 
-select(fligth){
-  console.log(this.flight);
+  select(fligth) {
+    this.notpassengers.nativeElement.innerHTML = ""
+    console.log(this.flight);
 
-  let plase = parseInt(this.flight.numFreeplaces) - (this.svc.adults + this.svc.babys)
-  console.log(plase);
-  
-  if(plase >= 0){
+    if (this.svc.adults == 0) {
+      this.notpassengers.nativeElement.innerHTML = "No adult passenger selected"
+      return
+    }
 
-    this.svc.flightSelected = fligth
+    this.flight.numFreeplaces = fligth.numplaces;
+    let plase = parseInt(this.flight.numFreeplaces) - (this.svc.adults + this.svc.babys)
+    if (plase >= 0) {
 
-    this.flight.numFreeplaces = plase.toString()
+      this.svc.flightSelected = fligth
 
-    console.log(this.flight.numFreeplaces);
+      this.flight.numFreeplaces = plase.toString()
 
-    this.raout.navigate(['/singup']) 
-    
+      console.log(this.flight.numFreeplaces);
+
+      this.raout.navigate(['/singup'])
+    }
+
+    else {
+      document.querySelector('.place').innerHTML = `only ${this.flight.numFreeplaces} places left`
+    }
   }
-  else{
-    document.querySelector('.place').innerHTML =`only ${this.flight.numFreeplaces} places left`
-  }
-  
-  
-}
-
-
 }
 
 

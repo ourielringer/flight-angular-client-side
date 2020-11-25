@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ListFligthService } from 'src/app/service/list-fligth.service';
+import { Flight } from 'src/app/models/models';
+import { ListFligthService } from 'src/app/services/list-fligth.service';
 
 @Component({
   selector: 'app-tickets',
@@ -12,7 +13,7 @@ export class TicketsComponent implements OnInit {
   ngOnInit(): void {
   }
   
-  flight= this.svc.flightSelected
+  flight:Flight = this.svc.flightSelected
   passenger= this.svc.passenger
 
 f(){
@@ -21,9 +22,6 @@ f(){
   console.log(this.flight.numOfFlight);
   
   }
-  
-
-  
 
   // companyName
   // companyLogo
@@ -34,11 +32,5 @@ f(){
   // to =''
   // tohour =''
   // price = ''
-  
-
-
-  
-  
-
 
 }

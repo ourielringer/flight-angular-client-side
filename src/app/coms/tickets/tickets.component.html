@@ -1,62 +1,78 @@
 <!-- new Flight('1a2b3c',"Afghanistan","2",'Albania','7','20/20/2020','200$','airfrance','300' -->
 <div class="conrainer">
     <div>
-        <div class="header">
-            <img src="" alt="">logo company
-            <div>
-                {{this.flight.numOfFlight}}
-            </div>        
         <div>
-            {{this.passenger.name}}
+            <div class="header">
+                <img src="data:image/png;base64,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"
+                    alt="logo company">
+                <div>
+                    {{this.flight.numOfFlight}}
+                </div>
+            </div>
+            <div>
+                <div>
+                    {{this.passenger.name}}
+                </div>
+                <div class="detailes-from">
+                    <div>
+                        {{this.flight.from}}
+                    </div>
+                    <div>
+                        {{this.flight.fromhour}}
+                    </div>
+                    <div>
+                        {{this.flight.date}}
+                    </div>
+                </div>
+                <div class="detailes-to">
+                    <div>
+                        {{this.flight.to}}
+                    </div>
+                    <div>
+                        {{this.flight.tohour}}
+                    </div>
+                </div>
+                <div>
+                    {{this.flight.price}}
+                </div>
+            </div>
         </div>
-        <div class="detailes-from">
-            <div>
-                {{this.flight.from}}
-            </div>
-            <div>
-             {{this.flight.fromhour}}
-            </div>
-            <div>
-                {{this.flight.date}}
-            </div>
-        </div>
-        <div class="detailes-to">
-            <div>
-                {{this.flight.to}}
-            </div>
-            <div>
-                {{this.flight.tohour}}
-            </div>
-        </div>
-        <div>
-            {{this.flight.price}}
-        </div>
-
-    </div>
-
-    <div class="body">
+        <div class="body">
             <!-- <i class='fas fa-luggage-cart' style='font-size:48px;'>20 kg</i>
             <button style='font-size:24px'>Button <i class='fas fa-suitcase'></i></button>
             <i class='far fa-check-circle' style='font-size:36px'></i> -->
-        <div class="icon">
-            <svg width="5em" height="5em" viewBox="0 0 16 16" class="bi bi-cup-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M1 2a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1v1h.5A1.5 1.5 0 0 1 16 4.5v7a1.5 1.5 0 0 1-1.5 1.5h-.55a2.5 2.5 0 0 1-2.45 2h-8A2.5 2.5 0 0 1 1 12.5V2zm13 10h.5a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.5-.5H14v8z"/>
-              </svg>
-              <img class="img" width="100em" height="100em" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Symbol_OK.svg/768px-Symbol_OK.svg.png" alt="fffffff">
+            <div class="icon">
+                <svg width="5em" height="5em" viewBox="0 0 16 16" class="bi bi-cup-fill" fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M1 2a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1v1h.5A1.5 1.5 0 0 1 16 4.5v7a1.5 1.5 0 0 1-1.5 1.5h-.55a2.5 2.5 0 0 1-2.45 2h-8A2.5 2.5 0 0 1 1 12.5V2zm13 10h.5a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.5-.5H14v8z" />
+                </svg>
+                <img class="img" width="100em" height="100em"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Symbol_OK.svg/768px-Symbol_OK.svg.png"
+                    alt="fffffff">
 
-              <svg width="5em" height="5em" viewBox="0 0 16 16" class="bi bi-briefcase-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M0 12.5A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5V6.85L8.129 8.947a.5.5 0 0 1-.258 0L0 6.85v5.65z"/>
-                <path fill-rule="evenodd" d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5v1.384l-7.614 2.03a1.5 1.5 0 0 1-.772 0L0 5.884V4.5zm5-2A1.5 1.5 0 0 1 6.5 1h3A1.5 1.5 0 0 1 11 2.5V3h-1v-.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5V3H5v-.5z"/>
-              </svg>
-              <img class="img" width="100em" height="100em" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Symbol_OK.svg/768px-Symbol_OK.svg.png" alt="fffffff">
+                <svg width="5em" height="5em" viewBox="0 0 16 16" class="bi bi-briefcase-fill" fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M0 12.5A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5V6.85L8.129 8.947a.5.5 0 0 1-.258 0L0 6.85v5.65z" />
+                    <path fill-rule="evenodd"
+                        d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5v1.384l-7.614 2.03a1.5 1.5 0 0 1-.772 0L0 5.884V4.5zm5-2A1.5 1.5 0 0 1 6.5 1h3A1.5 1.5 0 0 1 11 2.5V3h-1v-.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5V3H5v-.5z" />
+                </svg>
+                <img class="img" width="100em" height="100em"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Symbol_OK.svg/768px-Symbol_OK.svg.png"
+                    alt="fffffff">
 
-              <svg width="5em" height="5em" viewBox="0 0 16 16" class="bi bi-handbag-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8 1a2 2 0 0 0-2 2v2H5V3a3 3 0 0 1 6 0v2h-1V3a2 2 0 0 0-2-2zM5 5H3.361a1.5 1.5 0 0 0-1.483 1.277L.85 13.13A2.5 2.5 0 0 0 3.322 16h9.356a2.5 2.5 0 0 0 2.472-2.87l-1.028-6.853A1.5 1.5 0 0 0 12.64 5H11v1.5a.5.5 0 0 1-1 0V5H6v1.5a.5.5 0 0 1-1 0V5z"/>
-              </svg>
-              <img class="img" width="100em" height="100em" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Symbol_OK.svg/768px-Symbol_OK.svg.png" alt="fffffff">
-            <!-- <i class='fas fa-suitcase' style='font-size:48px;'>8 kg</i> -->
+                <svg width="5em" height="5em" viewBox="0 0 16 16" class="bi bi-handbag-fill" fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M8 1a2 2 0 0 0-2 2v2H5V3a3 3 0 0 1 6 0v2h-1V3a2 2 0 0 0-2-2zM5 5H3.361a1.5 1.5 0 0 0-1.483 1.277L.85 13.13A2.5 2.5 0 0 0 3.322 16h9.356a2.5 2.5 0 0 0 2.472-2.87l-1.028-6.853A1.5 1.5 0 0 0 12.64 5H11v1.5a.5.5 0 0 1-1 0V5H6v1.5a.5.5 0 0 1-1 0V5z" />
+                </svg>
+                <img class="img" width="100em" height="100em"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Symbol_OK.svg/768px-Symbol_OK.svg.png"
+                    alt="fffffff">
+                <!-- <i class='fas fa-suitcase' style='font-size:48px;'>8 kg</i> -->
+            </div>
+            <img src="" alt="">
         </div>
-        <img src="" alt="">
+        <button (click)="f()">ghgjjg</button>
     </div>
-    <button (click)="f()">ghgjjg</button>
-</div>

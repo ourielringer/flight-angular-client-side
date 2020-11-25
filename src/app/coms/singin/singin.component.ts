@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ListFligthService } from 'src/app/service/list-fligth.service';
 import { Router } from '@angular/router';
+import { ListFligthService } from 'src/app/services/list-fligth.service';
 
 
 @Component({
@@ -17,14 +17,17 @@ export class SinginComponent implements OnInit {
   }
 
   signin = new FormGroup({
-    name : new FormControl('', [Validators.required, Validators.minLength(4),]),
-    password : new FormControl('', [])
+    name : new FormControl('', [Validators.required,]),
+    password : new FormControl('',  [Validators.required, Validators.minLength(3),])
   })
 
   // name = new FormControl("",[Validators.required,Validators.min(2)]) 
   // password = new FormControl("",[Validators.required,Validators.min(6)])
   
   singin(){
+
+    console.log( this.signin.value.name);
+    
     for (let i = 0; i <  this.svc.listuser.length; i++) {
 
       if ( this.svc.listuser[i].name == this.signin.value.name &&
@@ -34,6 +37,7 @@ export class SinginComponent implements OnInit {
           this.router.navigate(['/details-passenger'])
         }
       else{
+        
         document.querySelector('.alert').innerHTML = "does not exist in the userslist <a routerLink ='/singup'>click hear</a>"
       }
     
