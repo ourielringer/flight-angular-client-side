@@ -1,26 +1,36 @@
-<div class="container">
+<div class="co">
   <div class="form-search">
+    <button routerLink="/privateArea"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-circle"
+        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z" />
+        <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+        <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z" />
+      </svg> אזור אישי </button>
 
     <div class="numpassenger">
-      <mat-form-field appearance="fill">
-        <mat-label>num passenger</mat-label>
-        <mat-select matNativeControl required>
-          <div class="btadult"><button #itemplus (click)="adultplus()">+</button>
-            <div class="adultvlue">{{svc.adults}}</div> <button (click)="adultminus()" mat-raised-button>-</button>
-            <mat-option>adult</mat-option>
-          </div>
-          <div class="btbaby"><button #itemplus (click)="babyplus()" mat-raised-button>+</button>
-            <div class="babyvlue">{{svc.babys}}</div> <button (click)="babyminus()" mat-raised-button>-</button>
-            <mat-option>baby</mat-option>
-          </div>
-        </mat-select>
-      </mat-form-field>
     </div>
 
     <div class="divbtdirction">
-      <div><button type="button" (click)="ounside()" class="btn btn-info">כיוון אחד</button></div>
-      <div class="ounsaid"><button type="button" (click)="backandforth()" class="btn btn-info">שני כיוונים</button>
+
+      <div class="ounsaid"><button type="button" (click)="ounside()" class="btn btn-info">כיוון אחד</button></div>
+      <div class="ounsaid"><button type="button" (click)="goandback()" class="btn btn-info">שני כיוונים</button></div>
+
+      <div class="contbt">
+        <div class="btadult">
+          <div class="ounsaid"><button #itemplus type="button" (click)="adultplus()" class="btn btn-info">מבוגר
+              +</button></div>
+          <span class="adultbaby">{{svc.adults}}</span>
+          <div class="ounsaid"><button type="button" (click)="adultminus()" class="btn btn-info">מבוגר -</button></div>
+        </div>
+        <div class="btbaby">
+          <div class="ounsaid"><button #itemplus type="button" (click)="babyplus()" class="btn btn-info">תינוק
+              +</button></div>
+          <span class="adultbaby">{{svc.babys}}</span>
+          <div class="ounsaid"><button type="button" (click)="babyminus()" class="btn btn-info">תינוק -</button></div>
+        </div>
       </div>
+
     </div>
 
 
@@ -45,9 +55,9 @@
           <input type="date" class="form-control" id="exampleFormControlInput1" formControlName="date"
             placeholder="1/1/2020">
         </div>
-        <div class="form-group" *ngIf="goAndBack == true">
+        <div class="form-group" *ngIf="svc.goAndBack == true">
           <label for="exampleFormControlInput1">date</label>
-          <input type="date" class="form-control" id="exampleFormControlInput1" formControlName="date"
+          <input type="date" class="form-control" id="exampleFormControlInput1" formControlName="dateback"
             placeholder="1/1/2020">
         </div>
       </form>
@@ -64,19 +74,21 @@
 
 
   <div class="listflight">
-
+    <div #notfound class="notfound" style="font-size: 30px;color:red;text-align:center"></div>
     <div class="go" *ngIf="listgo == true">
-      <label for="">הלוך</label>
-      <div #notfound class="notfound"></div>
+      <label style="font-size: 20px;margin-top: 10px">הלוך</label>
+
       <ul *ngFor='let f of listflightgo'>
         <app-findflight [flight]='f'>
         </app-findflight>
       </ul>
     </div>
 
+    <div #notfoundback class="notfound" style="font-size: 30px;color:red;"></div>
+
     <div class="return" *ngIf="listBakc == true">
-      <label for="">חזור</label>
-      <div #notfound class="notfound"></div>
+      <label style="font-size: 20px;margin-top: 10px">חזור</label>
+
       <ul *ngFor='let f of listflightback'>
         <app-findflight [flight]='f'>
         </app-findflight>
@@ -84,5 +96,6 @@
     </div>
 
   </div>
+
 
 </div>

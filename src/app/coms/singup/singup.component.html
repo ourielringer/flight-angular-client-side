@@ -1,29 +1,3 @@
-<!-- 
-<div class="form-signin container">
-    <img class="mb-4" src="/docs/4.5/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-
-    <h1 class="h3 mb-3 font-weight-normal">Please create an account</h1>
-
-    <label for="inputEmail" class="sr-only">name</label>
-    <input type="text" id="inputName" class="form-control"  [formControl]="name" placeholder="name" required="" autofocus="">
-
-    <label for="inputEmail" class="sr-only">id</label>
-    <input type="text" id="inputEmil" class="form-control"  [formControl]="id" placeholder="id" required="" autofocus="">
-
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control"  [formControl]="password" placeholder="Password" required="">
-
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
-    </div>
-    <button (click)='singup()' class="btn btn-lg btn-primary btn-block">continu</button><br>
-
-      <p>if you are registered <a routerLink ='/singin'>singin</a> </p>
-    <p class="mt-5 mb-3 text-muted">© 2020</p>
-</div> -->
-
 <div class="form-signin container">
   <!-- <img class="mb-4" src="/docs/4.5/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> -->
   <svg width="4em" height="4em" viewBox="0 0 16 16" class="bi bi-emoji-sunglasses" fill="currentColor"
@@ -43,26 +17,53 @@
       <label for="exampleInputEmail1">name</label>
       <input type="text" class="form-control" formControlName="name" id="exampleInputEmail1"
         aria-describedby="emailHelp">
+      <span *ngIf="signup.get('name').errors">
+        <span style="color: red;" *ngIf="signup.get('name').errors.minLength && signup.get('name').touched">
+          שם משתמש חייב להיות מינימום 2 תווים
+        </span>
+      </span>
+      <span *ngIf="signup.get('name').errors">
+        <span style="color: red;" *ngIf="signup.get('name').errors.required && signup.get('name').touched">
+          שדה זה הינו חובה</span>
+      </span>
     </div>
-    <div class="form-group">
-      <label for="exampleInputEmail1">email</label>
-      <input type="text" class="form-control" formControlName="email" id="exampleInputEmail1"
-        aria-describedby="emailHelp">
-    </div>
-    <div class="form-group">
-        <label for="exampleInputEmail1">phone number</label>
-        <input type="text" class="form-control" formControlName="phonenumber" id="exampleInputEmail1"
+
+      <div class="form-group">
+        <label for="exampleInputEmail1">email</label>
+        <input type="text" class="form-control" formControlName="email" id="exampleInputEmail"
           aria-describedby="emailHelp">
+        <span *ngIf="signup.get('email').errors">
+          <span style="color: red;" *ngIf="signup.get('email').errors.required && signup.get('email').touched">
+            שדה זה הינו חובה</span>
+        </span>
       </div>
+
+      <div class="form-group">
+        <label for="exampleInputEmail1">phone number</label>
+        <input type="text" class="form-control" formControlName="phonenumber" id="exampleInputEmai"
+          aria-describedby="emailHelp">
+        <span *ngIf="signup.get('phonenumber').errors">
+          <span style="color: red;"
+            *ngIf="signup.get('phonenumber').errors.required && signup.get('phonenumber').touched">
+            שדה זה הינו חובה</span>
+        </span>
+      </div>
+    
+
     <div class="form-group">
       <label for="exampleInputPassword1">Password</label>
       <input type="password" formControlName="password" class="form-control" id="exampleInputPassword1">
+      <span *ngIf="signup.get('password').errors">
+        <span style="color: red;" *ngIf="signup.get('password').errors.required && signup.get('password').touched">
+          שדה זה הינו חובה</span>
+      </span>
     </div>
 
     <button type="submit" [disabled]="signup.invalid" class="btn btn-primary">Submit</button>
   </form>
 
-  <p>if you are registered <a routerLink ='/singin'>singin</a> </p>
+  <p #linksingup style="font-size: 20px;background-color: antiquewhite"> אם אתה משתמש רשום <a routerLink='/singin'
+      style="color:blue ">לחץ כאן</a> </p>
 
   <p class="mt-5 mb-3 text-muted">© 2020</p>
 

@@ -1,15 +1,12 @@
 <h1 style="text-align: center">passengre details</h1>
 
 <div class="container">
-  <form class="form" [formGroup]="details" *ngFor='let p of svc.sumPassaenger'>
-     
-    <div class="row">
-      <div class="col-xs-12" formArrayName="arrayDetails">
-        <div class="row"   *ngFor="let ingredientCtr of array; let i = index"
-        [formGroupName]="i"
-          style="margin-top: 10px;">
-          <div class="form-row">
+  <form class="form" [formGroup]="details">
 
+    <div class="row form">
+      <div class="col-xs-12" formArrayName="arrayDetails">
+        <div class="row details" *ngFor="let p of svc.sumPassaenger; let i = index" [formGroupName]="i">
+          <div class="form-row">
             <div class="form-group col-md-6">
               <label for="inputEmail4">first name</label>
               <input type="text" class="form-control" id="inputEmail4" formControlName='firstname'
@@ -25,28 +22,27 @@
             <input type="text" class="form-control" id="inputAddress" placeholder="id" formControlName='id'>
           </div>
           <div class="form-group">
-            <label for="inputAddress2">address</label>
-            <input type="text" class="form-control" id="inputAddress2" placeholder="address" formControlName='address'>
+            <label for="inputAddress2">M.Mr</label>
+            <input type="text" class="form-control" id="inputAddress2" placeholder="address" formControlName='MorMr'>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
-              <label for="inputCity">email</label>
-              <input type="email" class="form-control" id="inputCity" formControlName='email'>
+              <label for="inputCity">age</label>
+              <input type="email" class="form-control" id="inputCity" formControlName='age'>
             </div>
             <div class="form-group col-md-6">
               <label for="inputCity">sity</label>
-              <input type="text" class="form-control" id="inputCity" formControlName='sity'>
+              <input type="text" class="form-control" id="inputCi" formControlName='sity'>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </form><br><br>
 
-  </form>
-  <div style='width: 80%;'>
-
+  <div class="divbt">
     <button class='btsubmit' (click)="savedetails()" class="btn btn-primary" [disabled]="details.invalid"
-      routerLink="/Payment">Sign in</button>
+      routerLink="/Payment">send</button>
   </div>
 
 </div>

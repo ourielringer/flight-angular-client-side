@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Flight } from 'src/app/models/models';
 import { HttpClient } from '@angular/common/http';
 import { ListFligthService } from 'src/app/services/list-fligth.service';
+import { HttpService } from 'src/app/services/http.service';
 
 
 @Component({
@@ -12,31 +13,34 @@ import { ListFligthService } from 'src/app/services/list-fligth.service';
 })
 export class SearchComponent implements OnInit {
 
-  constructor(public svc: ListFligthService) { }
+  constructor(public svc: ListFligthService ,public httpService:HttpService) { }
 
   ngOnInit(): void { }
 
-  goAndBack: boolean = false
+ 
 
   listBakc: boolean = false
-  listgo:boolean = false
+  listgo: boolean = false
 
-  listflightgo: Flight[] = []
-  listflightback: Flight[] = []
+  // listflightgo: Flight[] = []
+  // listflightback: Flight[] = []
 
-  @ViewChild("itemplus") itemplus: ElementRef
   // @ViewChild("itemplus") itemplus: ElementRef
   // @ViewChild("itemminus") itemminus: ElementRef
-  @ViewChild("notfound") notfound: ElementRef
+  @ViewChild("itemplus") itemplus: ElementRef
+
+  @ViewChild('notfound') notfound:ElementRef 
+  @ViewChild("notfoundback") notfoundback: ElementRef
 
   @ViewChild("bt1") bt1: ElementRef
   @ViewChild("bt2") bt2: ElementRef
-
 
   flight = new FormGroup({
     from: new FormControl(""),
     to: new FormControl(''),
     date: new FormControl(''),
+    dateback: new FormControl(''),
+
   })
 
   countryList = [
@@ -291,65 +295,51 @@ export class SearchComponent implements OnInit {
     "Åland Islands"
   ];
 
+  listflightgo: Flight[] = []
+  listflightback: Flight[] = []
+
   search() {
     this.svc.sumPassaengerarray()
 
-    // this.notfound.nativeElement.innerHTML = ""
+    this.notfound.nativeElement.innerHTML = ""
     this.listflightgo = [];
 
-    // this.svc.getFlight('http://localhost:3000/ticket', `?from=${this.flight.value.from}&&to=${this.flight.value.to}&&goAndBack=${this.flight.value.goAndBack}`)
     this.searchGo().subscribe(res => {
       console.log(res);
-
       if (res.length == 0) {
         console.log(res.length);
-        this.notfound.nativeElement.innerHTML = "not found flight"
+        console.log(this.notfound);
+
+        this.notfound.nativeElement.innerHTML = "לא נמצא טיסות הלוך"
         return
       }
       this.listgo = true
       this.listflightgo.push(...res)
     });
 
-    if (this.goAndBack) {
+    if (this.svc.goAndBack) {
+      this.notfoundback.nativeElement.innerHTML =''
+      this.listflightback = [];
       this.searchBakc().subscribe(res => {
         console.log(res);
-  
         if (res.length == 0) {
-          this.listBakc = true
           console.log(res.length);
-          this.notfound.nativeElement.innerHTML = "not found flight"
+          
+          this.notfoundback.nativeElement.innerHTML = "לא נמצא טיסות חזור"
           return
         }
         this.listBakc = true
         this.listflightback.push(...res)
       });
-
     }
-
-    // for (let i = 0; i < this.svc.listfligth.length; i++) {
-
-    //   if (this.flight.value.from == this.svc.listfligth[i].from &&
-    //     this.flight.value.to == this.svc.listfligth[i].to &&
-    //     this.flight.value.goAndBack == this.svc.listfligth[i].goAndBack) {
-
-    //     this.listflightgo.push(this.svc.listfligth[i])
-    //     // console.log(this.from.value);
-    //   }
-    //   else {
-    //     continue
-    //   }
-    // }
-    // if (this.listflightgo == []){
-    //   this.notfound.nativeElement.innerHTML = "not found flight"
-    // }
   }
 
   searchGo() {
-    return this.svc.getFlight('http://localhost:3000/ticket', `?from=${this.flight.value.from}&&to=${this.flight.value.to}&&date=${this.flight.value.date}`)
+    return this.httpService.getFlight('http://localhost:3000/ticket', `?from=${this.flight.value.from}&&to=${this.flight.value.to}&&date=${this.flight.value.date}`)
   }
 
   searchBakc() {
-    return this.svc.getFlight('http://localhost:3000/ticket', `?from=${this.flight.value.to}&&to=${this.flight.value.from}&&date=${this.flight.value.date}`)
+    return this.httpService.getFlight('http://localhost:3000/ticket', `?from=${this.flight.value.to}&&to=${this.flight.value.from}&&date=${this.flight.value.dateback}`)
   }
 
   adultplus() {
@@ -383,11 +373,14 @@ export class SearchComponent implements OnInit {
   }
 
   ounside() {
-    this.goAndBack = false
+    this.svc.goAndBack = false
   }
 
-  backandforth() {
-    this.goAndBack = true
-
+  goandback() {
+    this.svc.goAndBack = true
   }
 }
+
+var coll = document.getElementsByClassName("collapsible");
+var i;
+

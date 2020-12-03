@@ -1,3 +1,8 @@
+.co{
+    width: 80%;
+    margin: auto
+}
+
 .form-search{
     direction: rtl;
     margin-top:10%;
@@ -5,7 +10,8 @@
 
 .divinputs{
     height: 250px;
-    background:  skyblue;
+    background-color: rgba(0 , 0, 255,  0.2);
+    /* background:  skyblue; */
     border: blue 2px solid;
     border-radius: 10px;
     display: flex;
@@ -26,6 +32,7 @@
    width: 100%; 
 }
 
+
 .center{
     width: 150px;
     margin: 40px auto; 
@@ -36,11 +43,31 @@
     margin-top: 1px;
     justify-content: space-between;
 }
-
-.item, span{
-    margin-left:5px;
-    
+span{
+    margin: auto
 }
+
+.btadult{
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+}
+.btbaby{
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-between; */
+}
+
+.adultbaby{
+    font-size: 20px
+}
+.contbt{
+    /* border: 2px blue solid; */
+    margin-left: 125px;
+    display: flex;
+    flex-direction: column; 
+}
+
 .numperson{
     display: flex;
     flex-direction: column;
@@ -78,6 +105,7 @@
 .go{
     display: flex;
     flex-direction: column;
+    
 }
 
 .return{

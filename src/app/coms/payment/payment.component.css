@@ -1,6 +1,47 @@
-.container{
+.cont{
+    margin: auto
+}
+
+.form{
     margin-top :20%;
     border: 5px blue solid;
     padding: 15px;
     border-radius: 15px;
+}
+.details{
+   margin: auto;
+   text-align: center;
+   padding: 10px;
+    margin-top: 5%;
+    display: flex;
+    border: 2px blue solid;
+    justify-content: space-between;
+    width: 45%;
+   
+    /* position: absolute; */
+  
+}
+
+.add{
+    background-color: rgba(0 , 0, 255,  0.1);
+    padding: 20px;
+    border: 5px blue solid;
+    margin-top: 10%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.alert-box-actions-delete {
+    position: fixed;
+    top: 45vh;
+    left: 30vw;
+    width: 35vw;
+    padding: 16px;
+    z-index: 100;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    color: #232D54;
+    text-align: center;
+    border: 2px solid rgb(221, 207, 207);
+    border-radius: 25px;
 }

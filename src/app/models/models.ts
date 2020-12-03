@@ -11,8 +11,7 @@ export class Flight {
 
   constructor(public numOfFlight: string, public from: string, public fromhour: string, public to: string,
     public tohour: string, public date: string, public price: string, public companyName: string,
-    public numplaces: string) {
+    public numplaces: number) {
   }
-
-  public numFreeplaces: string = this.numplaces
+  id:number
 }

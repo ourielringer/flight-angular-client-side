@@ -1,5 +1,7 @@
 
-<div #notpassengers style="margin: auto"></div>
+<div #notpassengers style="margin: auto;
+color: red;
+font-size: 20px"></div>
 <div class="details">
     <label class="label"><span>companyName</span>   {{flight.companyName}} </label>
     <label class="label"><span>from </span>         {{flight.from}} </label>
@@ -9,7 +11,7 @@
     <label class="label"><span>date</span>          {{flight.date}} </label>
     <label class="label"><span>price</span>         {{flight.price}}</label>
     
-    <button  (click)='select(flight)'>select</button>
+    <button #btselect (click)='select()'>select</button>
 </div>
 
 <div class="place" style="color: red;"> </div>

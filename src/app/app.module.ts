@@ -18,6 +18,8 @@ import { SingupComponent } from './coms/singup/singup.component';
 import { PassengerDetailsComponent } from './coms/passenger-details/passenger-details.component';
 import { PaymentComponent } from './coms/payment/payment.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PrivateAreaComponent } from './coms/private-area/private-area.component';
+import { ChekinComponent } from './coms/chekin/chekin.component';
 
 
 
@@ -31,7 +33,9 @@ import { HttpClientModule } from '@angular/common/http';
     SinginComponent,
     SingupComponent,
     PassengerDetailsComponent,
-    PaymentComponent
+    PaymentComponent,
+    PrivateAreaComponent,
+    ChekinComponent
   ],
   imports: [
     BrowserModule,

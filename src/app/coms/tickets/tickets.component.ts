@@ -13,13 +13,13 @@ export class TicketsComponent implements OnInit {
   ngOnInit(): void {
   }
   
-  flight:Flight = this.svc.flightSelected
+  flight:Flight []= this.svc.flightSelected
   passenger= this.svc.passenger
 
 f(){
   console.log(this.flight);
   console.log(this.passenger);
-  console.log(this.flight.numOfFlight);
+  
   
   }
 
