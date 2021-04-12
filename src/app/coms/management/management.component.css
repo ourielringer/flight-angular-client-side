@@ -1,0 +1,24 @@
+.btmanagment{
+    height: 150px;
+    width: 200px;
+    margin: 20px
+   
+}
+
+.container{
+    margin: auto;
+    text-align: center
+}
+
+.deleteform{
+    width: 30%;
+    margin: auto;
+    border: 3px red solid;
+    border-radius: 5px;
+    padding: 15px;
+    background-color: rgba(0 , 0, 0,  0.2);
+}
+
+label{
+    font-size: 20px;
+}

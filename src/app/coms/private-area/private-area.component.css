@@ -20,4 +20,21 @@ span {
     flex-direction: row;
     justify-content: space-between;
 }
+.container{
+   text-align: right;
+}
+.divpermition{
+    color: rgb(255, 0, 0);
+}
+
+.divsearch{
+    /* direction: rtl; */
+   /* text-align: center; */
+}
+
+.btsearch{
+    /* display: flex;
+    flex-direction: column;
+    width: 10%; */
+}
 

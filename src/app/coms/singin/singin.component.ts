@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ListFligthService } from 'src/app/services/list-fligth.service';
 import { HttpService } from 'src/app/services/http.service';
@@ -29,14 +29,19 @@ export class SinginComponent implements OnInit {
   singin() {
     // console.log(this.signin.value);
 
-    this.httpservis.getorder(this.signin.value).subscribe((res) => {
+    this.httpservis.get(this.httpservis.urlordering +'/findone'+`?username=${this.signin.value.name}&&password=${this.signin.value.password}`).subscribe((res) => {
       console.log("res",res);
       if (res!=0) {
+        this.httpservis.getadmin(res).subscribe(() => {console.log("fff")
         this.svc.order = res[0]
+        this.svc.token = res[0].token
         console.log(this.svc.order);
         this.router.navigate(['/details-passenger'])
+      })
       } 
       else{
+        console.log('else');
+        
         this.singup.nativeElement.hidden = false
       } 
     })

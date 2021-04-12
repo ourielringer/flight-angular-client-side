@@ -44,7 +44,7 @@ export class FindflightComponent implements OnInit {
 
       console.log(this.svc.goAndBack == false);
       console.log("1");
-      this.raout.navigate(['/singup'])
+      this.raout.navigate(['/singin'])
     }
 
     else if (this.svc.flightSelected.length == 1) {

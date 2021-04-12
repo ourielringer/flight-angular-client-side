@@ -8,6 +8,7 @@ import { PassengerDetailsComponent } from './coms/passenger-details/passenger-de
 import { PaymentComponent } from './coms/payment/payment.component';
 import { TicketsComponent } from './coms/tickets/tickets.component';
 import { PrivateAreaComponent } from './coms/private-area/private-area.component';
+import { ManagementComponent } from './coms/management/management.component';
 
 
 const routes: Routes = [ 
@@ -19,6 +20,8 @@ const routes: Routes = [
    { path: 'Payment', component: PaymentComponent,},
    { path: 'ticket', component: TicketsComponent},
    { path: 'privateArea', component: PrivateAreaComponent},
+   { path: 'management', component: ManagementComponent},
+
 
 
 //  canActivate(servic)

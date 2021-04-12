@@ -1,13 +1,12 @@
 <div class="container cont">
     <div class="details">
-
-        <div>
+        <div *ngIf='this.svc.goAndBack'>
             <label style="font-size: 30px">חזור</label><br>
-            <div style="font-size: 20px;margin: 10px"><label for="">{{gopriceadult}} = {{svc.adults}}</label><span>
+            <div style="font-size: 20px;margin: 10px"><label for="">{{backpriceadult}} = {{svc.adults}}</label><span>
                     :מבוגרים</span></div>
-            <div style="font-size: 20px;margin: 10px"> <label for="">{{gopricebaby}} = {{svc.babys}}</label><span>
+            <div style="font-size: 20px;margin: 10px"> <label for="">{{backpricebaby}} = {{svc.babys}}</label><span>
                     :תינוקות</span></div>
-            <div><span>סה"כ :</span><label for="">$ {{sumgo}}</label></div>
+            <div><span>סה"כ :</span><label for="">$ {{sumback}}</label></div>
         </div>
 
         <div>
@@ -16,13 +15,11 @@
                     :מבוגרים</span></div>
             <div style="font-size: 20px;margin: 10px"> <label for="">{{gopricebaby}} = {{svc.babys}}</label><span>
                     :תינוקות</span></div>
-            <div><span>סה"כ :</span><label for="">$ {{sumback}}</label></div>
+            <div><span>סה"כ :</span><label for="">$ {{sumgo}}</label></div>
         </div>
-
     </div>
 
     <div class="add">
-
         <div>
             <div>
                 <h3 for="">ארוחה $10</h3><br>
@@ -72,10 +69,9 @@
                 <button type="button" class="btn btn-success" (click)=handbagminus()>-</button>
             </div>
         </div>
-
     </div>
 
-    <div class="alert-box-actions-delete" *ngIf="alertBox == true">
+    <div class="alert-box-actions-delete" *ngIf="alertBox">
         <p style="font-size: 30px">התשלום בוצע בהצלחה</p>
     </div>
 

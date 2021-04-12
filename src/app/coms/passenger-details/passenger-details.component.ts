@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { ListFligthService } from 'src/app/services/list-fligth.service';
 import { newArray } from '@angular/compiler/src/util';
 import { HttpService } from 'src/app/services/http.service';
+import { HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,10 +14,12 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class PassengerDetailsComponent implements OnInit {
 
-  constructor(public svc: ListFligthService, public svcHttp: HttpService) { }
+  constructor(public router: Router,public svc: ListFligthService, public svcHttp: HttpService) { }
 
   details: FormGroup
   recipeIngredients = new FormArray([]);
+
+  header:HttpHeaders
 
   get controls() {
     // a getter!
@@ -35,7 +39,7 @@ export class PassengerDetailsComponent implements OnInit {
         new FormGroup({
           firstname: new FormControl('', [Validators.required]),
           lastname: new FormControl(''),
-          id: new FormControl(''),
+          ID: new FormControl(''),
           MorMr: new FormControl(''),
           age: new FormControl(''),
           sity: new FormControl(''),
@@ -45,15 +49,9 @@ export class PassengerDetailsComponent implements OnInit {
   }
 
   savedetails() {
-    for (let i = 0; i < this.details.value.arrayDetails.length; i++) {
-      console.log(this.svc.order.id);
-      this.svc.listpassenger.push(this.details.value.arrayDetails[i])
-      console.log('fff',this.svc.listpassenger);
-      
-      this.details.value.arrayDetails[i]["idorder"] =  this.svc.order.id
-      this.details.value.arrayDetails[i]["idflightgo"] =  this.svc.flightSelected[0].id
-      this.details.value.arrayDetails[i]["idflightback"] =  this.svc.flightSelected[1].id
-      this.svcHttp.savePassengerDetails(this.details.value.arrayDetails[i]).subscribe(res => console.log(res))
-    }
+    this.svc.listpassenger.push(...this.details.value.arrayDetails)
+    console.log(this.svc.listpassenger);
+
+    this.router.navigate(['/Payment'])
   }
 }

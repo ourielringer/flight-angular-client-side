@@ -6,33 +6,87 @@
             <div class="modal-body">
                 <form [formGroup]="permition">
                     <div>
-                        <label for="recipient-name" class="col-form-label">user name:</label>
+                        <label for="recipient-name" class="col-form-label">: שם פרטי</label>
                         <input type="text" class="form-control" id="recipient-name" formControlName="name">
                     </div>
                     <div>
-                        <label for="recipient-name" class="col-form-label">password:</label>
+                        <label for="recipient-name" class="col-form-label">: סיסמא</label>
                         <input type="text" class="form-control" id="recipient-name" formControlName="password">
                     </div>
                 </form>
+                <div class="divpermition" #divpermition></div>
             </div>
+
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" routerLink="/search">Close</button>
-                <button type="button" class="btn btn-primary" (click)='privatArea()'>continu</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" routerLink="/search">סגור</button>
+                <button type="button" class="btn btn-primary" (click)='privatArea()'>המשך</button>
             </div>
         </div>
     </div>
 </dialog>
 <div class="container">
+    <h2>ברוך הבא לאיזור האישי</h2>
+    <p>כאן תוכל לנהל את הטיסות שלך ולשדרג אותם</p>
+
+    <div class="divsearch">
+        <div>
+            <button (click)="allOrders()">חפש</button><span> לקבלת כל ההזמנות שלך</span>
+        </div>
+        <div class="btsearch">
+            <button (click)="openSearchByNumFlight()">חפש</button><span> לקבלת הזמנה לפי מספר טיסה</span>
+            <div *ngIf="searchByNumFlight">
+                <button (click)="orderByNumFlight()"> חפש</button>
+                <input #inpNumFlight type="text" (input)="numFlight = inpNumFlight.value">
+                <span > הכנס מספר טיסה</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="reservation">
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+
+
+<!-- <div class="container">
     <div class='F-detaile'>
         <div class="details" style="direction: rtl" *ngIf='flightgo'>
             <label for="" style="font-size: 15px;">טיסת הלוך</label><br><br>
-            <label class="label"> <span>שם החברה :</span> {{flightgo[0].companyName}} </label><br>
-            <label class="label"> <span> מוצא : </span> {{flightgo[0].from}} </label><br>
+            <label class="label"><span>שם החברה :</span> {{flightgo[0].companyName}} </label><br>
+            <label class="label"><span> מוצא : </span> {{flightgo[0].from}} </label><br>
             <label class="label"><span> שעת המראה :</span> {{flightgo[0].fromhour}} </label><br>
-            <label class="label"> <span> יעד :</span> {{flightgo[0].to}} </label><br>
+            <label class="label"><span> יעד :</span> {{flightgo[0].to}} </label><br>
             <label class="label"><span> שעת נחיתה :</span> {{flightgo[0].tohour}} </label><br>
-            <label class="label"> <span> תאריך :</span> {{flightgo[0].date}} </label><br>
-            <label class="label"> <span> מחיר :</span> {{flightgo[0].price}} $\</label>
+            <label class="label"><span> תאריך :</span> {{flightgo[0].date}} </label><br>
+            <label class="label"><span> מחיר :</span> {{flightgo[0].price}} $\</label>
         </div>
 
         <div class="details" style="direction: rtl" *ngIf='flightback'>
@@ -52,16 +106,18 @@
                 style="font-size: 15px;border: 2px black solid; margin: auto;width:30%;height: 50px;direction: rtl; text-align: center">
                 <button style="margin-left: 30px;color:blueviolet" (click)='delet(i)'>הסרת
                     נוסע</button>{{i.lastname}}<span style="color: blue">: שם משפחה</span> {{i.name}} <span
-                    style="color: blue">:שם</span></dt>
+                    style="color: blue">:שם</span>
+            </dt>
 
         </ul><br>
 
     </div>
     <div *ngIf='flightgo'>
-        <button (click)='add()' *ngIf='flightgo'>להוספת נוסע</button>
+        <button class="btn btn-primary" (click)='add()' *ngIf='flightgo'>להוספת נוסע</button><br><br>
+        <button class="btn btn-primary" (click)='deletall()' *ngIf='flightgo'> ביטול הזמנה</button>
 
-        <form action="" [formGroup]="detail"  *ngIf='addpasenger'>
-            <div class="row details" >
+        <form action="" [formGroup]="detail" *ngIf='addpasenger'>
+            <div class="row details">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputEmail4">first name</label>
@@ -97,7 +153,7 @@
         </form>
     </div>
 
-</div>
+</div> -->
 
 
 

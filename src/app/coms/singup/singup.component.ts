@@ -30,10 +30,10 @@ export class SingupComponent implements OnInit {
     
     // let boolian = true
 
-    //  this.svcHttp.singup( this.signup.value).subscribe(res => {
-    //    console.log(res)
-    //    this.svcsingup.passenger = res;
-    // })
+     this.svcHttp.post(this.svcHttp.urlordering, this.signup.value).subscribe(res => {
+       console.log(res)
+       this.svcsingup.passenger = res;
+    })
 
     // for (let i = 0; i < this.svcsingup.listuser.length; i++) {
 
@@ -57,9 +57,9 @@ export class SingupComponent implements OnInit {
     //   this.svcsingup.passenger = user
     //   console.log(this.svcsingup.passenger);
 
-    //    this.router.navigate(['/singin'])
+       this.router.navigate(['/singin'])
 
-    // //   console.log(this.svcsingup.listuser);
+    //   console.log(this.svcsingup.listuser);
     //  }
   }
 }

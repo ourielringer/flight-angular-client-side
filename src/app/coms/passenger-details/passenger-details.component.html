@@ -10,29 +10,29 @@
             <div class="form-group col-md-6">
               <label for="inputEmail4">first name</label>
               <input type="text" class="form-control" id="inputEmail4" formControlName='firstname'
-                placeholder="first name">
+                placeholder="first name" value="John">
             </div>
             <div class="form-group col-md-6">
               <label for="inputPassword4">last name</label>
-              <input type="text" class="form-control" id="inputPassword4" formControlName='lastname'>
+              <input type="text" class="form-control" id="inputPassword4" formControlName='lastname'value="John">
             </div>
           </div>
           <div class="form-group">
             <label for="inputAddress">id</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="id" formControlName='id'>
+            <input type="text" class="form-control" id="inputAddress" placeholder="id" formControlName='ID'value=4582657>
           </div>
           <div class="form-group">
             <label for="inputAddress2">M.Mr</label>
-            <input type="text" class="form-control" id="inputAddress2" placeholder="address" formControlName='MorMr'>
+            <input type="text" class="form-control" id="inputAddress2" placeholder="address" formControlName='MorMr'value="M">
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="inputCity">age</label>
-              <input type="email" class="form-control" id="inputCity" formControlName='age'>
+              <input type="email" class="form-control" id="inputCity" formControlName='age'value=25>
             </div>
             <div class="form-group col-md-6">
               <label for="inputCity">sity</label>
-              <input type="text" class="form-control" id="inputCi" formControlName='sity'>
+              <input type="text" class="form-control" id="inputCi" formControlName='sity'value="bb">
             </div>
           </div>
         </div>
@@ -42,7 +42,7 @@
 
   <div class="divbt">
     <button class='btsubmit' (click)="savedetails()" class="btn btn-primary" [disabled]="details.invalid"
-      routerLink="/Payment">send</button>
+      >send</button>
   </div>
 
 </div>

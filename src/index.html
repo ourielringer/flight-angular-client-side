@@ -18,9 +18,34 @@
 </head>
 </head>
 <body class="mat-typography" >
-    
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="direction: rtl;">
+    <div class="container-fluid" style="height: 100px;">
+      <b><a class="navbar-brand" href="#" style="font-size: 50px;">Navbar</a></b>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <b><a class="nav-link active" aria-current="page" href="#">טיסות וחופשות</a></b>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">טיסות מסביב לעולם</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">מידע לנוסע</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">מדיניות ביטולים</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <a href="#" style="margin-top: 50px;margin-left:50px;">דף הבית</a>
   <div [ngStyle]="{'background' : 'url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfpaWaWBuQmZtk4P4Qdw_AJ8xrN3yJ5dmyZw&usqp=CAU)'}"></div>
   <!-- <img class="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfpaWaWBuQmZtk4P4Qdw_AJ8xrN3yJ5dmyZw&usqp=CAU" alt="aaa"> -->
   <app-root></app-root>
 </body>
+
 </html>

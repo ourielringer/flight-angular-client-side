@@ -13,11 +13,11 @@ import { HttpService } from 'src/app/services/http.service';
 })
 export class SearchComponent implements OnInit {
 
-  constructor(public svc: ListFligthService ,public httpService:HttpService) { }
+  constructor(public svc: ListFligthService, public httpService: HttpService) { }
 
   ngOnInit(): void { }
 
- 
+
 
   listBakc: boolean = false
   listgo: boolean = false
@@ -29,7 +29,7 @@ export class SearchComponent implements OnInit {
   // @ViewChild("itemminus") itemminus: ElementRef
   @ViewChild("itemplus") itemplus: ElementRef
 
-  @ViewChild('notfound') notfound:ElementRef 
+  @ViewChild('notfound') notfound: ElementRef
   @ViewChild("notfoundback") notfoundback: ElementRef
 
   @ViewChild("bt1") bt1: ElementRef
@@ -318,13 +318,13 @@ export class SearchComponent implements OnInit {
     });
 
     if (this.svc.goAndBack) {
-      this.notfoundback.nativeElement.innerHTML =''
+      this.notfoundback.nativeElement.innerHTML = ''
       this.listflightback = [];
       this.searchBakc().subscribe(res => {
         console.log(res);
         if (res.length == 0) {
           console.log(res.length);
-          
+
           this.notfoundback.nativeElement.innerHTML = "לא נמצא טיסות חזור"
           return
         }

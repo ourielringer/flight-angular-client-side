@@ -20,6 +20,7 @@ import { PaymentComponent } from './coms/payment/payment.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PrivateAreaComponent } from './coms/private-area/private-area.component';
 import { ChekinComponent } from './coms/chekin/chekin.component';
+import { ManagementComponent } from './coms/management/management.component';
 
 
 
@@ -35,7 +36,8 @@ import { ChekinComponent } from './coms/chekin/chekin.component';
     PassengerDetailsComponent,
     PaymentComponent,
     PrivateAreaComponent,
-    ChekinComponent
+    ChekinComponent,
+    ManagementComponent
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ListFligthService } from 'src/app/services/list-fligth.service';
 import { HttpService } from 'src/app/services/http.service';
 import { async } from '@angular/core/testing';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-payment',
@@ -13,6 +14,9 @@ import { async } from '@angular/core/testing';
 export class PaymentComponent implements OnInit {
 
   constructor(public router: Router, public svc: ListFligthService, public httpservis: HttpService) { }
+
+
+  header: HttpHeaders
 
   gopriceadult: number
   gopricebaby: number
@@ -30,12 +34,14 @@ export class PaymentComponent implements OnInit {
   ngOnInit(): void {
     this.gopriceadult = this.svc.adults * parseInt(this.svc.flightSelected[0].price)
     this.gopricebaby = parseInt(this.svc.flightSelected[0].price) / 2 * this.svc.babys
-
-    this.backpriceadult = this.svc.adults * parseInt(this.svc.flightSelected[1].price)
-    this.backpricebaby = parseInt(this.svc.flightSelected[1].price) / 2 * this.svc.babys
-
     this.sumgo = this.gopriceadult + this.gopricebaby
-    this.sumback = this.backpriceadult + this.backpricebaby
+
+    if (this.svc.goAndBack) {
+      this.backpriceadult = this.svc.adults * parseInt(this.svc.flightSelected[1].price)
+      this.backpricebaby = parseInt(this.svc.flightSelected[1].price) / 2 * this.svc.babys
+      this.sumback = this.backpriceadult + this.backpricebaby
+    }
+
   }
 
   paymentDetails = new FormGroup({
@@ -45,23 +51,63 @@ export class PaymentComponent implements OnInit {
     cvv: new FormControl("", [])
   })
 
-    pyment() {
+  pyment() {
     confirm('האם הינך בטוח ?')
     for (const flight of this.svc.flightSelected) {
       this.httpservis.updatenumplase(flight.id, this.svc.SeatingAvailable).subscribe(async res => {
         console.log(res)
         this.alertBox = true;
-        this.home()
-       
+        // this.home()
+      })
+    }
+    for (let i = 0; i < this.svc.flightSelected.length; i++) {
+
+      let numReservation = this.CreateAnumber()
+      let reservation = {
+        'numReservation': numReservation,
+        'idFlight': this.svc.flightSelected[i].id,
+        'idOrdering': this.svc.order.id
+      }
+
+      this.httpservis.post(this.httpservis.urlreservation, reservation).subscribe(res => {
+
+        for (let j = 0; j < this.svc.listpassenger.length; j++) {
+
+          this.header = new HttpHeaders({
+            'authorisation': this.svc.token
+          })
+          this.svc.listpassenger[j]["idReservation"] = res['id']
+          this.svc.listpassenger[j]["reservationId"] = res
+          console.log(this.svc.listpassenger[j]);
+
+          this.httpservis.savePassengerDetails(this.svc.listpassenger[j],this.header).subscribe(res => {
+            console.log(res)
+          })
+        }
       })
     }
   }
 
-  home(){
+  CreateAnumber() {
+    let result = [];
+    let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let charactersLength = characters.length;
+    for (var i = 0; i < 8; i++) {
+      result.push(characters.charAt(Math.floor(Math.random() *
+        charactersLength)));
+    }
+    return result.join('');
+  }
+
+  home() {
     setTimeout(function () {
+      console.log('homeeee');
+
       this.alertBox = false
-      this.router.navigate([''])
-    }, 3000)
+      console.log(this.alertBox);
+
+      this.router.navigate(['/singin'])
+    }, 5000)
   }
 
   bagajplus() {

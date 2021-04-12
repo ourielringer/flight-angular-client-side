@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User, } from '../models/models';
-import { Flight } from '../models/models';
+import { Flight, Passenger } from '../models/models';
 import { SingupComponent } from '../coms/singup/singup.component';
 import { HttpClient } from '@angular/common/http';
 import { from, Observable } from 'rxjs';
@@ -13,25 +12,14 @@ export class ListFligthService {
   constructor(private http: HttpClient) { }
 
 
-  listfligth = [new Flight('1a2b3c', "Afghanistan", "2", 'Albania', '7', '2020-11-01', '200$', 'airfrance', 300),
-  new Flight('4d5e6f', "Afghanistan", "5", 'Algeria', '23:00', '2020-11-01', '1200$', 'chinaff', 200),
-  new Flight('25fg5y', "Afghanistan", "10", 'Algeria', '24:00', '2020-11-01', '1500$', 'chinaff', 4)]
-
-  listuser = [new User('aaaa', 123456789, 'a', 123)];
-
   goAndBack: boolean = false
 
-  flightSelected: Flight [] =[]
-
+  flightSelected: Flight[] = []
+  listpassenger: Passenger[] = []
   passenger
-
-  SeatingAvailable:number;
-
+  SeatingAvailable: number;
   order
-
-  
-
- listpassenger = []
+  token: string
 
   adults: number = 0
   babys: number = 0
@@ -45,8 +33,6 @@ export class ListFligthService {
     console.log(this.sumPassaenger);
   }
 
-
- 
 }
 
 

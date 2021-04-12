@@ -1,0 +1,49 @@
+<dialog class="site-dialog" id='mydialog'>
+        <div class="modal-dialog">
+            <h2 class="modal-title" id="exampleModalLabel" style="text-align: center">Entrance to a personal area</h2>
+    
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form [formGroup]="permition">
+                        <div>
+                            <label for="recipient-name" class="col-form-label">user name:</label>
+                            <input type="text" class="form-control" id="recipient-name" formControlName="name">
+                        </div>
+                        <div>
+                            <label for="recipient-name" class="col-form-label">password:</label>
+                            <input type="text" class="form-control" id="recipient-name" formControlName="password">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" routerLink="/search">חזור</button>
+                    <button type="button" class="btn btn-primary" (click)='enter()'>כניסה</button>
+                </div>
+            </div>
+        </div>
+    </dialog>
+
+<div class="container">
+    <h1>ממשק ניהול</h1>
+
+    <button type="button" (click)='delete()' class="btmanagment btn btn-outline-danger btn-lg">מחיקת טיסה</button>
+    <button type="button" class="btmanagment btn btn-outline-success btn-lg">הוספת טיסה</button>
+    <button type="button" class="btmanagment btn btn-outline-warning btn-lg">עידכון טיסה</button>
+
+
+    <form class="deleteform" [formGroup]="deleteflight" (ngSubmit)="delete()" *ngIf='ifdelete'>
+        <h2 for="">deleting a flight</h2>
+        <div class="form-group">
+            <label for="exampleInputEmail1">flight number</label>
+            <input type="text" class="form-control" formControlName="flightnumber" id="exampleInputEmail1"
+                aria-describedby="emailHelp">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">date</label>
+            <input type="date" formControlName="date" class="form-control" id="exampleInputPassword1">
+        </div>
+
+        <button type="submit" [disabled]="deleteflight.invalid" class="btn btn-outline-danger">delete</button>
+    </form>
+
+</div>

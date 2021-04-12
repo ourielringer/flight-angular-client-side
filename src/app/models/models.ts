@@ -1,9 +1,16 @@
 export class User {
 
-  constructor(public name, public email, public phonenumber, public password) {}
-  
-  
+  constructor(public name, public email, public phonenumber, public password) { }
 }
+
+export class Passenger {
+
+  constructor(public firstName, public lastName, public id,
+    public MorMr, public address, public age, public sity) { }
+
+  idReservation:number
+}
+
 
 
 
@@ -13,5 +20,5 @@ export class Flight {
     public tohour: string, public date: string, public price: string, public companyName: string,
     public numplaces: number) {
   }
-  id:number
+  id: number
 }
