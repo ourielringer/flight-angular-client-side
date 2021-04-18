@@ -3,6 +3,9 @@ import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { HttpService } from 'src/app/services/http.service';
 import { ListFligthService } from 'src/app/services/list-fligth.service';
 import { Router } from '@angular/router';
+import { Passenger, Reservation } from 'src/app/models/models';
+import { mergeMap } from 'rxjs/operators';
+import { concat } from 'rxjs';
 
 
 @Component({
@@ -11,21 +14,26 @@ import { Router } from '@angular/router';
   styleUrls: ['./private-area.component.css']
 })
 export class PrivateAreaComponent implements OnInit {
-  
+
   @ViewChild("divpermition") divpermition: ElementRef
-  pasangers: any[] = []
+  pasangers: Passenger[] = []
   flightgo: any
   flightback
   addpasenger = false
   div
   searchByNumFlight: boolean = false;
   numFlight: string
+  order
 
-  constructor(private httpService: HttpService, public svc: ListFligthService, private raout: Router) { 
+  myReservation: Reservation[]
+
+  constructor(
+    private httpService: HttpService,
+    public svc: ListFligthService,
+    private raout: Router) {
   }
 
   details: FormGroup
-  order
 
   ngOnInit(): void {
     this.div = document.getElementById('mydialog')
@@ -51,9 +59,6 @@ export class PrivateAreaComponent implements OnInit {
 
   create() {
 
-    console.log(this.pasangers);
-    console.log(this.details.controls.arrayDetails);
-
     for (let i = 0; i < this.pasangers.length; i++) {
       (this.details.get('arrayDetails') as FormArray).push(
         new FormGroup({
@@ -66,7 +71,6 @@ export class PrivateAreaComponent implements OnInit {
         })
       );
     }
-
   }
 
   detail = new FormGroup({
@@ -84,7 +88,6 @@ export class PrivateAreaComponent implements OnInit {
 
   detailnewpasenger() {
     this.pasangers.push(this.detail.value)
-    // console.log(this.pasangers);
     this.addpasenger = false;
   }
 
@@ -92,14 +95,12 @@ export class PrivateAreaComponent implements OnInit {
     console.log(this.permition.value.name);
 
     this.httpService.get(this.httpService.urlordering + '/findone' + `?username=${this.permition.value.name}&&password=${this.permition.value.password}`).subscribe(res => {
-      // this.urlordering +'/findone'+`?username=${order.name}&&password=${order.password}`
       console.log(res);
       if (res['message'] != "Http Exception") {
         this.order = res[0];
         this.div.close('cancelling');
         // this.allpasengers.nativeElement.hidden = false
       } else {
-        console.log("ddddddddddd");
         this.divpermition.nativeElement.innerHTML = "אחד או יותר מהנתונים לא נכונים\nנסה שנית"
       }
     })
@@ -123,24 +124,33 @@ export class PrivateAreaComponent implements OnInit {
   //   })
   // })
 
-  delet(pasenger) {
-    console.log(pasenger.id);
-    console.log(this.pasangers);
-    for (let i = 0; i < this.pasangers.length; i++) {
+  // delet(pasenger) {
+  //   console.log(pasenger.id);
+  //   console.log(this.pasangers);
+  //   for (let i = 0; i < this.pasangers.length; i++) {
 
-      if (this.pasangers[i].id == pasenger.id) {
-        confirm("האם אתה בטוח ?")
-        this.pasangers.splice(i, 1)
-        console.log(this.pasangers);
+  //     if (this.pasangers[i].id == pasenger.id) {
+  //       confirm("האם אתה בטוח ?")
+  //       this.pasangers.splice(i, 1)
+  //       console.log(this.pasangers);
 
-        break
-      }
-    }
-  }
+  //       break
+  //     }
+  //   }
+  // }
 
   allOrders() {
-    this.httpService.get(this.httpService.urlreservation + `/${this.order.id}`).subscribe(res => console.log(res));
-
+    this.httpService.get1(this.httpService.urlreservation + `/${this.order.id}`).pipe(
+      concat()
+    )
+    // .subscribe((res) => {
+    //   console.log(res)
+    //   this.myReservation = res
+    //   for (let i = 0; i < this.myReservation.length; i++) {
+    //     this.httpService.get(this.httpService.urlflight + `/${this.myReservation[0].idFlightGo}`)
+         
+    //   }
+    // });
   }
   orderByNumFlight() {
 

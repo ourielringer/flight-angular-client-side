@@ -60,35 +60,32 @@ export class PaymentComponent implements OnInit {
         // this.home()
       })
     }
-    for (let i = 0; i < this.svc.flightSelected.length; i++) {
 
-      let numReservation = this.CreateAnumber()
-      let reservation = {
-        'numReservation': numReservation,
-        'idFlight': this.svc.flightSelected[i].id,
-        'idOrdering': this.svc.order.id
-      }
-
-      this.httpservis.post(this.httpservis.urlreservation, reservation).subscribe(res => {
-
-        for (let j = 0; j < this.svc.listpassenger.length; j++) {
-
-          this.header = new HttpHeaders({
-            'authorisation': this.svc.token
-          })
-          this.svc.listpassenger[j]["idReservation"] = res['id']
-          this.svc.listpassenger[j]["reservationId"] = res
-          console.log(this.svc.listpassenger[j]);
-
-          this.httpservis.savePassengerDetails(this.svc.listpassenger[j],this.header).subscribe(res => {
-            console.log(res)
-          })
-        }
-      })
+    let numReservation = this.CreateAreservationNumber()
+    let reservation = {
+      'numReservation': numReservation,
+      'idFlightGo': this.svc.flightSelected[0].id,
+      'idFlightBack': this.svc.flightSelected.length == 2 ? this.svc.flightSelected[1].id : null,
+      'idOrdering': this.svc.order.id
     }
+    
+    this.httpservis.post(this.httpservis.urlreservation, reservation).subscribe(res => {
+
+      for (let j = 0; j < this.svc.listpassenger.length; j++) {
+
+        this.header = new HttpHeaders({
+          'authorisation': this.svc.token
+        })
+        this.svc.listpassenger[j]["idReservation"] = res['id']
+        this.httpservis.savePassengerDetails(this.svc.listpassenger[j], this.header).subscribe(res => {
+          console.log(res)
+        })
+      }
+    })
+
   }
 
-  CreateAnumber() {
+  CreateAreservationNumber() {
     let result = [];
     let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let charactersLength = characters.length;
